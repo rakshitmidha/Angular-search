@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<title>
+			Building Radar Search | Coding challenge
+		</title>
+		<link href="css/index.css" rel="stylesheet" type="text/css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+		
+	</head>
+	<body ng-app="BuildingRadarSearch">
+		<div ng-controller="BuildingRadarSearchCtrl">
+			<h3 class="headName">Building Radar Search</h3>
+			<div class="bar">
+				<input type="text" class="search" id = "search" ng-model="searchString" placeholder="Enter your search terms" style="height: 50px; background-color:#bfb5b50d" onkeyup="lookup()" />
+			</div>
+					<table id = "results">
+						<tr>
+							<th>Description</th>
+							<th>Title</th>
+							<th>Published Date</th>
+							<th>Construction Phase</th>
+							<th>Project Volume</th>
+							<th>Construction End Date</th>
+							<th>Id</th>
+						</tr>
+						<tr ng-repeat="i in data | searchFor: {description:searchString}| searchFor: {title:searchString}| searchFor: {source_published_date:searchString}| searchFor: {construction_phases:searchString}| searchFor: {project_volume:searchString}| searchFor: {construction_end_date:searchString}| searchFor: {id:searchString} :'OR'">
+							<td>{{i.description}}</td>
+							<td>{{i.title}}</td>
+							<td>{{i.source_published_date}}</td>
+							<td>{{i.construction_phases[0]}}</td>
+							<td>{{i.project_volume}}</td>
+							<td>{{i.construction_end_date}}</td>
+							<td>{{i.id}}</td>
+						</tr>
+		</div>
+	</body>
+	<script src="js/index.js"></script>
+</html>
